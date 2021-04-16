@@ -1,0 +1,11 @@
+@import "src/styles/_variables.scss" ;
+.footer{
+    background-color: var(--footer-bg);
+    padding: 16px 0;
+    font-size: 16px;
+    color: var(--footer-color);
+    a {
+        color: var(--footer-color);
+        padding: 0 10px;
+    }
+}

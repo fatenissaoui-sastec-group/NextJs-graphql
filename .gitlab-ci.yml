@@ -1,0 +1,34 @@
+image: docker:latest
+
+services:
+  - docker:dind
+before_script:
+  - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+  - eval $(ssh-agent -s)
+  - pwd
+.GlobalScript: &GlobalScript
+    - export NODE_ENV=$NODE_ENV
+    - export CLIENT_PORT=$CLIENT_PORT
+    - docker-compose build --no-cache
+    - docker network create ionnet || true
+    - docker-compose up -d          
+stages:
+    - devBeta
+
+devBeta:
+  stage: devBeta
+  tags:
+    - dev-beta
+  variables:
+    NODE_ENV: production
+    CLIENT_PORT: 4504
+
+  script:
+    - *GlobalScript
+  environment:
+    name: devBeta
+  only:
+    - main
+  when: manual
+
+

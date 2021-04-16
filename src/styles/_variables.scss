@@ -1,0 +1,67 @@
+$primary: #fa541c;
+$border-color: #7b7d82;
+$form-feedback-invalid-color:#ff8888 ;
+$spacer: 16px;
+$spacers: () !default;
+$spacers: map-merge(
+  (
+    0: 0,
+    1: (
+      $spacer * 0.25,
+    ),
+    2: (
+      $spacer * 0.5,
+    ),
+    3: (
+      $spacer * 0.75,
+    ),
+    4: (
+      $spacer * 1,
+    ),
+    5: (
+      $spacer * 1.25,
+    ),
+    6: (
+      $spacer * 1.5,
+    ),
+    7: (
+      $spacer * 1.75,
+    ),
+    8: (
+      $spacer * 2,
+    ),
+    9: (
+      $spacer * 2.25,
+    ),
+    10: (
+      $spacer * 2.5,
+    ),
+    11: (
+      $spacer * 2.75,
+    ),
+    12: (
+      $spacer * 3,
+    ),
+    13: (
+      $spacer * 3.25,
+    ),
+    14: (
+      $spacer * 3.5,
+    ),
+    15: (
+      $spacer * 3.75,
+    ),
+    16: (
+      $spacer * 4,
+    ),
+    17: (
+      $spacer * 4.25,
+    ),
+    18: (
+      $spacer * 4.5,
+    ),
+  ),
+  $spacers
+);
+$modal-md: 400px;
+$modal-backdrop-opacity: 0.9 ;

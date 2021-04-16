@@ -1,0 +1,20 @@
+@import "src/styles/_variables.scss";
+.timerCellContainer {
+    max-width: 368px;
+}
+    .timerCell {
+        border-radius: 8px;
+        color: var(--event_card-timer-color);
+        background-color: var(--event_card-border);
+        width: 77px;
+        height: 80px;
+        .value {
+            font-size: 36px;
+            font-weight: 300;
+        }
+        .label {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+    }
+

@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args: 
+        NODE_ENV: ${NODE_ENV}
+    image: fo-mgen-event-page-nextjs
+    container_name: fo-mgen-event-page-nextjs_c
+    ports:
+      - "${CLIENT_PORT}:3000"
+    networks:
+      - ionnet
+
+networks:
+  ionnet:
+    external: true
+    name: ionnet
