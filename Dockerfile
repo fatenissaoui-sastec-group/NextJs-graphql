@@ -3,8 +3,15 @@ FROM node:alpine AS deps
 
 ARG NODE_ENV
 
+#RUN apk add  openssh-client
+#RUN apk add  git
 RUN apk add  libc6-compat
+
 WORKDIR /app
+
+#ADD .ssh/id_rsa /root/.ssh/id_rsa
+#RUN chmod 600 /root/.ssh/id_rsa
+#RUN echo "StrictHostKeyChecking no " > /root/.ssh/config
 
 COPY package.json package-lock.json ./
 RUN npm install --frozen-lockfile
@@ -12,8 +19,13 @@ RUN npm install --frozen-lockfile
 # Rebuild the source code only when needed
 FROM node:alpine AS builder
 WORKDIR /app
+
+#ARG API_HOST
+#ENV API_HOST $API_HOST
+
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
+#RUN printenv | sed 's/\([^=]*=\)\(.*\)/\1"\2"/' > .env
 RUN npm run build
 
 # Production image, copy all the files and run next
