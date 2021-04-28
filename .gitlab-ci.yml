@@ -2,27 +2,25 @@ image: docker:latest
 
 services:
   - docker:dind
-before_script:
-  - 'which ssh-agent || ( apt-get install -qq openssh-client )'
-  - eval $(ssh-agent -s)
-  - pwd
 .GlobalScript: &GlobalScript
     - export NODE_ENV=$NODE_ENV
-    - export CLIENT_PORT=$CLIENT_PORT
+    - export EXTERNAL_PORT=$EXTERNAL_PORT
     - docker-compose build --no-cache
     - docker network create ionnet || true
     - docker-compose up -d          
 stages:
     - devBeta
+    - achrafSandbox
 
 devBeta:
   stage: devBeta
   tags:
     - dev-beta
   variables:
-    NODE_ENV: production
-    CLIENT_PORT: 4504
-
+    NODE_ENV:
+    EXTERNAL_PORT:
+    BASE_PATH:
+    PROJECT_NAME: 
   script:
     - *GlobalScript
   environment:
@@ -31,4 +29,21 @@ devBeta:
     - main
   when: manual
 
+
+achrafSandbox:
+  stage: achrafSandbox
+  tags:
+    - achraf-sandbox
+  variables:
+    NODE_ENV: production
+    EXTERNAL_PORT: 4001
+    BASE_PATH: 
+    PROJECT_NAME: next-skeleton-gitlab-ci
+  script:
+    - *GlobalScript
+  environment:
+    name: achrafSandbox
+  only:
+    - main
+  when: manual
 

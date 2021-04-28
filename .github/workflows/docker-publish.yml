@@ -1,0 +1,38 @@
+name: Docker
+
+on:
+  push:
+    # Publish `main` as Docker `latest` image.
+    branches:
+      - main
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - v*
+
+  pull_request:
+    branches:
+      - main
+    tags:
+      - v*
+env:
+  NODE_ENV: production
+  EXTERNAL_PORT: 4604
+  BASE_PATH: 
+jobs:
+  # Push image to GitHub Packages.
+  # See also https://docs.docker.com/docker-hub/builds/
+  web:
+    runs-on: dev
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker-compose build --no-cache
+      
+      - name:  Create Docker network
+        run: docker network create ionnet || true 
+
+      - name: Deploy docker image to the container
+        run: docker-compose up -d 
+
+

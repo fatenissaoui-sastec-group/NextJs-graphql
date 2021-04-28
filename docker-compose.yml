@@ -7,10 +7,11 @@ services:
       dockerfile: Dockerfile
       args: 
         NODE_ENV: ${NODE_ENV}
-    image: fo-mgen-event-page-nextjs
-    container_name: fo-mgen-event-page-nextjs_c
+        BASE_PATH: ${BASE_PATH}
+    image: ${PROJECT_NAME}
+    container_name: ${PROJECT_NAME}_c
     ports:
-      - "${CLIENT_PORT}:3000"
+      - "${EXTERNAL_PORT}:3000"
     networks:
       - ionnet
 

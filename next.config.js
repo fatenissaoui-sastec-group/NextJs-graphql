@@ -2,16 +2,12 @@ const withFonts = require('next-fonts');
 const withI18n = require('next-translate')
 
 const SERVER_VARS = []
-const PUBLIC_VARS = [
-  "API_HOST",
-  "API_SYMFONY_HOST",
-  "APP_API_HOST_PUSHER",
-  "API_TOKEN"
-]
+const PUBLIC_VARS = ['BASE_PATH']
 
 const env =  {
   serverRuntimeConfig: copyValues(SERVER_VARS),
   publicRuntimeConfig: copyValues(PUBLIC_VARS),
+  basePath: process.env.BASE_PATH || ""
 }
 console.log("Loaded Config to Server");
 console.log(env);

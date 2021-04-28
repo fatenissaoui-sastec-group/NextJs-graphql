@@ -20,12 +20,12 @@ RUN npm install --frozen-lockfile
 FROM node:alpine AS builder
 WORKDIR /app
 
-#ARG API_HOST
-#ENV API_HOST $API_HOST
+ARG BASE_PATH
+ENV BASE_PATH $BASE_PATH
 
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-#RUN printenv | sed 's/\([^=]*=\)\(.*\)/\1"\2"/' > .env
+RUN printenv | sed 's/\([^=]*=\)\(.*\)/\1"\2"/' > .env
 RUN npm run build
 
 # Production image, copy all the files and run next
@@ -41,6 +41,6 @@ RUN adduser -S nextjs -u 1001
 RUN chown -R nextjs:nodejs /app/.next
 USER nextjs
 
-EXPOSE 4104
+EXPOSE 3000
 
 CMD ["node_modules/.bin/next", "start"]
