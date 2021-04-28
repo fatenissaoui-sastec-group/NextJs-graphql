@@ -17,10 +17,10 @@ devBeta:
   tags:
     - dev-beta
   variables:
-    NODE_ENV:
-    EXTERNAL_PORT:
-    BASE_PATH:
-    PROJECT_NAME: 
+    NODE_ENV: production
+    EXTERNAL_PORT: 4001
+    BASE_PATH: ""
+    PROJECT_NAME: skeleton-gitlab-ci
   script:
     - *GlobalScript
   environment:
