@@ -37,7 +37,7 @@ achrafSandbox:
   variables:
     NODE_ENV: production
     EXTERNAL_PORT: 4001
-    BASE_PATH: 
+    BASE_PATH: ""
     PROJECT_NAME: next-skeleton-gitlab-ci
   script:
     - *GlobalScript
